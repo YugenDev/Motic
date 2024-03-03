@@ -1,6 +1,6 @@
-# Proyecto Motic - Bitácora Emocional
+# Motic - Bitácora Emocional
 
-Bienvenido al proyecto Motic, una aplicación de Bitácora Emocional que te ayuda a realizar un seguimiento de tu bienestar emocional día a día.
+Bienvenido al proyecto Motic, una aplicación de Bitácora Emocional que te ayuda a realizar un seguimiento de tu estado animico día a día.
 
 ## Descripción
 
@@ -9,7 +9,7 @@ Motic te permite registrar cómo te sientes a lo largo del día utilizando el c�
 ## Características
 
 - Registro de emociones tres veces al día.
-- Utiliza el círculo de las emociones para seleccionar tu estado emocional.
+- Utiliza el círculo de las emociones para seleccionar tu estado emocional y asiganrle un color.
 - Historial para visualizar tus emociones a lo largo del tiempo.
 - Funcionalidad de inicio de sesión y registro de usuarios.
 - Diseño moderno y fácil de usar.
@@ -32,7 +32,3 @@ Motic te permite registrar cómo te sientes a lo largo del día utilizando el c�
 ## Contribución
 
 ¡Nos encantaría recibir tu contribución! Si tienes ideas para mejorar este proyecto, por favor abre un issue o envía un pull request.
-
-## Licencia
-
-Este proyecto está bajo la Licencia MIT. Para más detalles, consulta el archivo [LICENSE](LICENSE).
