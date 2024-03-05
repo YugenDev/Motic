@@ -1,15 +1,45 @@
 "use client";
 
+import { useState } from 'react';
 import React from 'react';
 import 'tailwindcss/tailwind.css';
 import Link from 'next/link';
 
 const Register = () => {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const [formData, setFormData] = useState({
+    nombre: '',
+    email: '',
+    contraseña: '',
+  });
+
+  const handleSubmit = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
-    // Aquí puedes manejar la lógica de registro
-    console.log("Formulario de registro enviado");
+
+    try {
+      const response = await fetch('http://localhost:8000/usuarios/usuarios/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        console.log('Usuario registrado exitosamente');
+        // Puedes redirigir a otra página o mostrar un mensaje de éxito
+      } else {
+        console.error('Error al registrar el usuario');
+      }
+    } catch (error) {
+      console.error('Error de red:', error);
+    }
   };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
 
   return (
     <div className="flex justify-center items-center h-screen bg-gradient-to-r from-pink-500 to-yellow-500">
@@ -23,7 +53,7 @@ const Register = () => {
             <input
               type="text"
               id="name"
-              name="name"
+              name="nombre"
               className="w-full px-3 py-2 border rounded-md"
             />
           </div>
@@ -45,7 +75,7 @@ const Register = () => {
             <input
               type="password"
               id="password"
-              name="password"
+              name="contraseña"
               className="w-full px-3 py-2 border rounded-md"
             />
           </div>
