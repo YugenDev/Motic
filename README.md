@@ -28,7 +28,3 @@ Motic te permite registrar cómo te sientes a lo largo del día utilizando el c�
 2. Navega al directorio del proyecto: `cd motic`
 3. Instala las dependencias: `npm install`
 4. Inicia la aplicación: `npm run dev`
-
-## Contribución
-
-¡Nos encantaría recibir tu contribución! Si tienes ideas para mejorar este proyecto, por favor abre un issue o envía un pull request.
