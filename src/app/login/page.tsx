@@ -1,14 +1,44 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import 'tailwindcss/tailwind.css';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 const Login = () => {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const router = useRouter();
+
+  const handleSubmit = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
-    // Aquí puedes manejar la lógica de inicio de sesión
-    console.log("Formulario de inicio de sesión enviado");
+
+    try {
+      const response = await fetch(
+        'https://fictional-carnival-r4ggwppp69rpfqq5-8000.app.github.dev/usuarios/iniciar-sesion',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            nombre: username,
+            contraseña: password,
+          }),
+        }
+      );
+
+      if (response.ok) {
+        const usuario = await response.json();
+        // Aquí puedes manejar la lógica de inicio de sesión con el usuario obtenido
+        console.log("Inicio de sesión exitoso:", usuario);
+        router.push('/dashboard');
+      } else {
+        console.error("Error al iniciar sesión:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error de red:", error);
+    }
   };
 
   return (
@@ -26,6 +56,8 @@ const Login = () => {
               type="text"
               id="username"
               name="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               className="w-full px-3 py-2 border rounded-md"
             />
           </div>
@@ -37,6 +69,8 @@ const Login = () => {
               type="password"
               id="password"
               name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="w-full px-3 py-2 border rounded-md"
             />
           </div>
@@ -49,9 +83,9 @@ const Login = () => {
           <p className="text-center text-gray-600 mt-2">
             ¿No tienes una cuenta?{" "}
             <Link legacyBehavior href="../sign-in">
-            <a href="#" className="text-blue-500">
-              Regístrate
-            </a>
+              <a href="#" className="text-blue-500">
+                Regístrate
+              </a>
             </Link>
           </p>
         </form>
@@ -59,5 +93,5 @@ const Login = () => {
     </div>
   );
 };
-  
-  export default Login;
+
+export default Login;
