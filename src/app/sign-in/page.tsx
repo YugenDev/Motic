@@ -1,33 +1,33 @@
 "use client";
 
-import { useState } from 'react';
-import React from 'react';
+import React, { useState } from 'react';
 import 'tailwindcss/tailwind.css';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 const Register = () => {
   const [formData, setFormData] = useState({
-    nombre: '',
+    nombre: "",
     email: '',
     contraseña: '',
   });
+  const router = useRouter()
 
-  const handleSubmit = async (event: { preventDefault: () => void; }) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:8000/usuarios/usuarios/', {
+      const response = await fetch('https://fictional-carnival-r4ggwppp69rpfqq5-8000.app.github.dev/usuarios/usuarios/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
-        credentials: 'include'
       });
 
       if (response.ok) {
         console.log('Usuario registrado exitosamente');
-        // Puedes redirigir a otra página o mostrar un mensaje de éxito
+        router.push("/login")
       } else {
         console.error('Error al registrar el usuario');
       }
@@ -36,11 +36,10 @@ const Register = () => {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
-
 
   return (
     <div className="flex justify-center items-center h-screen bg-gradient-to-r from-pink-500 to-yellow-500">
@@ -55,6 +54,7 @@ const Register = () => {
               type="text"
               id="name"
               name="nombre"
+              onChange={handleChange}
               className="w-full px-3 py-2 border rounded-md"
             />
           </div>
@@ -66,6 +66,7 @@ const Register = () => {
               type="email"
               id="email"
               name="email"
+              onChange={handleChange}
               className="w-full px-3 py-2 border rounded-md"
             />
           </div>
@@ -77,6 +78,7 @@ const Register = () => {
               type="password"
               id="password"
               name="contraseña"
+              onChange={handleChange}
               className="w-full px-3 py-2 border rounded-md"
             />
           </div>
