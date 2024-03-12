@@ -4,6 +4,9 @@ import React, { useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { Bounce, toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -30,11 +33,24 @@ const Login = () => {
 
       if (response.ok) {
         const usuario = await response.json();
-        // Aquí puedes manejar la lógica de inicio de sesión con el usuario obtenido
-        console.log("Inicio de sesión exitoso:", usuario);
+        
+        console.log("Inicio de sesión exitoso:");
         router.push('/dashboard');
+  
       } else {
-        console.error("Error al iniciar sesión:", response.statusText);
+        console.log("Error al iniciar sesión:", response.statusText);
+
+        toast.info('Usuario o contraseña incorrectos', {
+          position: "top-center",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          transition: Bounce,
+          });
       }
     } catch (error) {
       console.error("Error de red:", error);
@@ -90,6 +106,7 @@ const Login = () => {
           </p>
         </form>
       </div>
+      <ToastContainer/>
     </div>
   );
 };
