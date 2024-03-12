@@ -33,7 +33,8 @@ const Login = () => {
 
       if (response.ok) {
         const usuario = await response.json();
-        
+        localStorage.setItem('userId', usuario.id);
+        localStorage.setItem('username', usuario.nombre);
         console.log("Inicio de sesión exitoso:");
         router.push('/dashboard');
   
