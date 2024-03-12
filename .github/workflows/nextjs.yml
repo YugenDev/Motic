@@ -92,5 +92,5 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
         with:
-        # Especifica el directorio de salida directamente
-        path: ./out
+        
+          path: ./out
