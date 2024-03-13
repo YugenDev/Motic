@@ -32,7 +32,7 @@ const Dashboard: React.FC = () => {
         <div className="container mx-auto flex items-center justify-between">
           <h1 className="text-2xl font-bold bg-gradient-to-r from-pink-500 to-yellow-500 text-transparent bg-clip-text">Dashboard</h1>
           <div className="flex items-center">
-            <p className="text-white mr-4">Bienvenido, {username}</p>
+            <p className="text-white mr-4 subpixel-antialiased font-bold tracking-wide italic">¡Bienvenido, {username}! </p>
             <button
               className="bg-red-500 bg-gradient-to-r from-pink-500 to-yellow-500 text-transparent bg-clip-text px-6 py-2 rounded mr-4"
               onClick={handleLogout}
