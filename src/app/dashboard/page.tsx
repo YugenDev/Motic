@@ -34,6 +34,25 @@ const Dashboard: React.FC = () => {
     return formattedDate;
   };
 
+  const getColorShadow = (color) => {
+    switch (color) {
+      case 'Rojo 🔴':
+        return '0 4px 6px rgba(255, 0, 0, 0.1)';
+      case 'Verde 🟢':
+        return '0 4px 6px rgba(0, 255, 0, 0.1)';
+      case 'Azul 🔵':
+        return '0 4px 6px rgba(0, 0, 255, 0.1)';
+      case 'Amarillo 🟡':
+        return '0 4px 6px rgba(255, 255, 0, 0.1)';
+      case 'Naranja 🟠':
+        return '0 4px 6px rgba(255, 165, 0, 0.1)';
+      case 'Morado 🟣':
+        return '0 4px 6px rgba(128, 0, 128, 0.1)';
+      default:
+        return '0 4px 6px rgba(0, 0, 0, 0.1)';
+    }
+  };
+
   useEffect(() => {
     // Obtener el nombre del usuario del localStorage
     const storedUsername = localStorage.getItem('username');
@@ -80,20 +99,25 @@ const Dashboard: React.FC = () => {
         {/* Agrega aquí información resumida del usuario, estadísticas, etc. */}
       </section>
 
-      <section className="col-span-8 bg-white p-4 rounded-lg shadow-2xl max-h-96 overflow-y-auto">
-          <h2 className="text-xl font-bold mb-2">Tus Registros</h2>
-          {/* Mostrar los registros emocionales del usuario */}
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {emotionRecords.map(record => (
-              <div key={record.id} className="bg-white rounded-lg shadow-md p-4">
-                <p className="text-gray-600">Fecha: {formatDate(record.fecha)}.</p>
-                <p className="text-blue-600">Emoción: {record.emocion}</p>
-                <p className="text-green-600">Color: {record.color}</p>
-                <p className="text-gray-700">Comentario: {record.comentario}</p>
-              </div>
-            ))}
-          </div>
-        </section>
+    
+<section className="col-span-8 bg-white p-4 rounded-lg shadow-2xl max-h-96 overflow-y-auto">
+  <h2 className="text-xl font-bold mb-2">Tus Registros</h2>
+  {/* Mostrar los registros emocionales del usuario */}
+  <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+    {emotionRecords.map(record => (
+      <div
+      key={record.id}
+      className="bg-white rounded-lg p-4 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg border border-${record.color}"
+      style={{ boxShadow: getColorShadow(record.color) }}
+    >    
+        <p className="text-gray-600">Fecha: {formatDate(record.fecha)}.</p>
+        <p className="text-blue-600">Emoción: {record.emocion}</p>
+        <p className="text-green-600">Color: {record.color}</p>
+        <p className="text-gray-700">Comentario: {record.comentario}</p>
+      </div>
+    ))}
+  </div>
+</section>
     </main>
   </div>
   );
