@@ -4,7 +4,7 @@ import 'tailwindcss/tailwind.css';
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { getEmotionRecords } from "/workspaces/Motic/src/app/api/emotionRecords.js";
+import { getEmotionRecords } from '../api/emotionRecords';
 import moment from 'moment';
 
 const Dashboard: React.FC = () => {
