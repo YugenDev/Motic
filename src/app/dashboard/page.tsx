@@ -4,7 +4,7 @@ import 'tailwindcss/tailwind.css';
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { getEmotionRecords } from '../api/emotionRecords';
+import { getEmotionRecords, deleteEmotionalRecord } from '../api/emotionRecords';
 import moment from 'moment';
 
 const Dashboard: React.FC = () => {
@@ -70,6 +70,15 @@ const Dashboard: React.FC = () => {
     router.push('/dashboard/new-record');
   };
 
+  const handleDelete = async (recordId) => {
+    try{
+      await deleteEmotionalRecord();
+      fetchEmotionRecords();
+    } catch{
+      console.error('Error al eliminar el registro emocional:');
+    }
+  };
+
   return (
     <div className="backdrop-blur-sm min-h-screen flex flex-col bg-gradient-to-r from-pink-500 to-yellow-500 font-sans">
       <header className="bg-slate-950 text-white p-4">
@@ -101,24 +110,22 @@ const Dashboard: React.FC = () => {
 
         <section className="col-span-8 bg-white p-4 rounded-lg shadow-2xl max-h-96 overflow-y-auto">
           <h2 className="text-xl font-bold mb-2">Tus Registros</h2>
-          {/* Mostrar los registros emocionales del usuario */}
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             {emotionRecords.map(record => (
-              <div
-                key={record.id}
-                className="bg-white rounded-lg p-4 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg border border-${record.color}"
-                style={{ boxShadow: getColorShadow(record.color) }}
-              >
-                <p className="text-gray-600">Fecha: {formatDate(record.fecha)}.</p>
-                <p className="text-blue-600">Emoción: {record.emocion}</p>
-                <p className="text-green-600">Color: {record.color}</p>
-                <p className="text-gray-700">Comentario: {record.comentario}</p>
-              </div>
+               <div key={record.id} className="relative bg-white rounded-lg shadow-lg p-4 mb-4">
+               <div className="mb-8">
+                 <p className="text-gray-600">Fecha: {formatDate(record.fecha)}.</p>
+                 <p className="text-blue-600">Emoción: {record.emocion}</p>
+                 <p className="text-green-600">Color: {record.color}</p>
+                 <p className="text-gray-700">Comentario: {record.comentario}</p>
+               </div>
+               <button onClick={() => handleDelete(record.id)} className="absolute bottom-0 left-1/2 transform -translate-x-1/2 bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 transition duration-300 mb-1">Borrar</button>
+             </div>
             ))}
           </div>
         </section>
-        
-      </main> 
+
+      </main>
     </div>
   );
 };

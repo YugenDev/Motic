@@ -35,7 +35,6 @@ const NewRecordForm = () => {
                 color,
                 comentario
             });
-
             router.push('/dashboard');
         } catch (error) {
             console.error('Error al crear el registro emocional:', error);
