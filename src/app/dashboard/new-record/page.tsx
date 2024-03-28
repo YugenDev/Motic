@@ -3,7 +3,7 @@
 import 'tailwindcss/tailwind.css';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { createEmotionRecord } from "/workspaces/Motic/src/app/api/emotionRecords.js";
+import { createEmotionRecord } from '@/app/api/emotionRecords';
 import CircleImage from './CircleImage/CircleImage';// Importar la imagen de referencia del círculo de emociones
 
 const NewRecordForm = () => {
@@ -46,9 +46,7 @@ const NewRecordForm = () => {
             <h2 className="text-3xl font-bold mb-4">Nuevo Registro Emocional</h2>
             <div className="grid grid-cols-3 gap-4">
                 <div className="col-span-1">
-                    <div className="flex justify-center">
-                        <img src="/circle_emotions.png" alt="Círculo de emociones" className="max-w-full h-auto" />
-                    </div>
+                    <CircleImage/>
                 </div>
                 <div className="col-span-2 bg-white p-6 rounded-lg shadow-lg">
                     <form onSubmit={handleSubmit} className="space-y-4">
