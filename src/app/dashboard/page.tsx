@@ -34,7 +34,7 @@ const Dashboard: React.FC = () => {
     return formattedDate;
   };
 
-  const getColorShadow = (color) => {
+  const getColorShadow = (color: string) => {
     switch (color) {
       case 'Rojo 🔴':
         return '0 4px 6px rgba(255, 0, 0, 0.1)';
