@@ -21,7 +21,7 @@ const Dashboard: React.FC = () => {
     }
   };
 
-  const formatDate = (dateString) => {
+  const formatDate = (dateString: string) => {
     const formats = ['DD/MM/YYYY HH:mm', 'YYYY-MM-DDTHH:mm:ss', 'YYYY-MM-DD HH:mm:ss', 'YYYY-MM-DD'];
     let formattedDate = dateString;
     for (const format of formats) {
