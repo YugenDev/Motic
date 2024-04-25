@@ -70,7 +70,7 @@ const Dashboard: React.FC = () => {
     router.push('/dashboard/new-record');
   };
 
-  const handleDelete = async (recordId: number) => {
+  const handleDelete = async (recordId: recordId) => {
     try{
       await deleteEmotionalRecord();
       fetchEmotionRecords();
