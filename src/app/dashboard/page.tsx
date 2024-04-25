@@ -14,7 +14,7 @@ const Dashboard: React.FC = () => {
 
   const fetchEmotionRecords = async () => {
     try {
-      const records = await getEmotionRecords();
+      const record = await getEmotionRecords();
       setEmotionRecords(records);
     } catch (error) {
       console.error('Error al obtener los registros emocionales:', error);
