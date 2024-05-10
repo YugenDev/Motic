@@ -24,7 +24,7 @@ Motic te permite registrar cómo te sientes a lo largo del día utilizando el c�
 
 ## Instalación
 
-1. Clona este repositorio: `git clone https://github.com/tu-usuario/motic.git`
+1. Clona este repositorio: `https://github.com/YugenDev/Motic`
 2. Navega al directorio del proyecto: `cd motic`
 3. Instala las dependencias: `npm install`
 4. Inicia la aplicación: `npm run dev`
